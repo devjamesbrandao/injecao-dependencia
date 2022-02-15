@@ -4,9 +4,18 @@ namespace Injecao_dependencia.Service
 {
     public class ProdutoService : IProdutoService
     {
-        public void ConsoleProduto()
+        private readonly ICategoriaService _categoria;
+
+        public ProdutoService(ICategoriaService categoria)
         {
-            throw new NotImplementedException();
+            _categoria = categoria;
+        }
+
+        public string ConsoleProduto()
+        {
+            _categoria.ConsoleCategoria();
+
+            return "Olá, eu sou uma aplicação console.";
         }
     }
 }
