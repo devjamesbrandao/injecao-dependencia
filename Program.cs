@@ -10,9 +10,7 @@ namespace Injecao_dependencia
         public static Task Main(string[] args)
         {
             using var host = CreateHostBuilder(args).Build();
-
             Console.WriteLine(ProdutoComInjecaoDependencia(host.Services));
-
             return host.RunAsync();
         }
 
@@ -28,11 +26,8 @@ namespace Injecao_dependencia
         public static string ProdutoComInjecaoDependencia(IServiceProvider services)
         {
             using var serviceScope = services.CreateScope();
-
             var provider = serviceScope.ServiceProvider;
-
             var produto = provider.GetRequiredService<IProdutoService>();
-
             return produto.ConsoleProduto();
         }
     }
